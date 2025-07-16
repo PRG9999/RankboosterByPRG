@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>RankBooster By PRG9999</title>
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 16px;
+      background: #ffcc00;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #00ff99;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 RankBooster By PRG9999 🚀</h1>
+
+  <label for="idml">Masukkan ID ML:</label>
+  <input type="text" id="idml" placeholder="Contoh: 123456789 (1234)">
+
+  <label for="bot">Enemy Bot (%):</label>
+  <input type="number" id="bot" placeholder="Contoh: 90">
+
+  <label for="rank">Rank Saat Ini:</label>
+  <input type="text" id="rank" placeholder="Contoh: Epic, Mythic, GM">
+
+  <button onclick="startBooster()">Star Rank Booster</button>
+
+  <div class="result" id="resultBox"></div>
+
+  <!-- Suara aktif booster -->
+  <audio id="boosterSound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3bfa0df040.mp3?filename=notification-sound-7062.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function startBooster() {
+      const idml = document.getElementById("idml").value;
+      const bot = document.getElementById("bot").value;
+      const rank = document.getElementById("rank").value;
+      const resultBox = document.getElementById("resultBox");
+
+      if (!idml || !bot || !rank) {
+        resultBox.innerHTML = "❗ Mohon isi semua data terlebih dahulu.";
+        return;
+      }
+
+      resultBox.innerHTML = "⏳ Memulai Rank Booster dalam 10 detik...";
+      let countdown = 10;
+      const interval = setInterval(() => {
+        countdown--;
+        resultBox.innerHTML = `⏳ Memulai Rank Booster dalam ${countdown} detik...`;
+        if (countdown === 0) {
+          clearInterval(interval);
+          // Putar suara booster
+          document.getElementById("boosterSound").play();
+          resultBox.innerHTML = `
+            ✅ <b>Rank Booster Aktif!</b><br><br>
+            🔹 ID ML: <b>${idml}</b><br>
+            🔹 Bot Power: <b>${bot}%</b><br>
+            🔹 Rank Saat Ini: <b>${rank}</b><br><br>
+            🚀 Sistem pengoptimalan matchmaking sedang berjalan...
+          `;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
